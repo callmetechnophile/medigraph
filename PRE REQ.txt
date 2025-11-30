@@ -1,0 +1,33 @@
+AGI Industry 5.0 App Walkthrough
+Overview
+This application is a "Brain Cognition" themed interface designed for Raspberry Pi (Linux), featuring a React frontend and a Python FastAPI backend. It includes mock integrations for Firebase Authentication, Supabase Data Storage, and EEG Data Processing via an LLM (Gemini Pro 3).
+
+Features
+Frontend: React + Vite with custom "Brain Cognition" styling.
+Login Screen: Gradient background, social login mocks.
+OTP Verification: Email-based OTP flow.
+Dashboard: 7-icon grid menu.
+Sub-Menu: "Cognitive sensory language action" specific view.
+Backend: Python FastAPI.
+Auth: Mock Firebase token and OTP verification.
+EEG: Mock data ingestion and "TOON" format processing.
+Storage: Mock Supabase storage with hashing.
+
+Prerequisites
+Node.js & npm
+Python 3.8+
+
+How to Run
+1. Start the Backend
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload
+The backend will run at http://localhost:8000.
+
+2. Start the Frontend
+Open a new terminal:
+
+cd frontend
+npm install
+npm run dev
+The frontend will run at http://localhost:5173 (or similar).
