@@ -51,9 +51,12 @@ async def neo4j_lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         keep_alive=True,
     )
 
-    # Verify connectivity at startup — fail fast on misconfiguration
-    await _neo4j_driver.verify_connectivity()
-    logger.info("neo4j.connected")
+    # Verify connectivity at startup — make it non-fatal to allow boot debugging
+    try:
+        await _neo4j_driver.verify_connectivity()
+        logger.info("neo4j.connected")
+    except Exception as exc:
+        logger.error("neo4j.connection_failed_on_startup", error=str(exc))
 
     # Store on app.state for direct access in middleware if needed
     app.state.neo4j_driver = _neo4j_driver

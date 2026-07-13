@@ -59,7 +59,10 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     async with neo4j_lifespan(app):
         # Initialise database schema (constraints + indexes)
         driver = app.state.neo4j_driver
-        await init_database(driver, get_settings().neo4j_database)
+        try:
+            await init_database(driver, get_settings().neo4j_database)
+        except Exception as exc:
+            logger.error("database.init.failed_on_startup", error=str(exc))
 
         logger.info("app.ready")
         yield
