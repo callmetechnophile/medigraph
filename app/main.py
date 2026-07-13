@@ -35,11 +35,19 @@ def _configure_logging() -> None:
     else:
         processors.append(structlog.dev.ConsoleRenderer())
 
+    log_level_map = {
+        "CRITICAL": 50,
+        "ERROR": 40,
+        "WARNING": 30,
+        "INFO": 20,
+        "DEBUG": 10,
+        "NOTSET": 0
+    }
+    numeric_level = log_level_map.get(settings.log_level.upper(), 20)
+
     structlog.configure(
         processors=processors,
-        wrapper_class=structlog.make_filtering_bound_logger(
-            structlog.get_level_from_name(settings.log_level)
-        ),
+        wrapper_class=structlog.make_filtering_bound_logger(numeric_level),
         context_class=dict,
         logger_factory=structlog.PrintLoggerFactory(),
         cache_logger_on_first_use=True,
