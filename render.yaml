@@ -35,7 +35,7 @@ services:
       - key: SUPABASE_KEY
         sync: false
       - key: SUPABASE_BUCKET
-        value: reports
+        value: medigraph
       - key: CORS_ORIGINS
         value: '["https://your-frontend.com"]'
 
