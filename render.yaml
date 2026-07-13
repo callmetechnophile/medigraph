@@ -45,7 +45,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 2 * * *"  # 2 AM daily
-    startCommand: "python -m app.workflow.scheduler daily_analytics"
+    dockerCommand: "python -m app.workflow.scheduler daily_analytics"
     envVars:
       - fromGroup: healthcare-platform-env
 
@@ -54,7 +54,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 3 * * 1"  # 3 AM every Monday
-    startCommand: "python -m app.workflow.scheduler weekly_analytics"
+    dockerCommand: "python -m app.workflow.scheduler weekly_analytics"
     envVars:
       - fromGroup: healthcare-platform-env
 
@@ -63,7 +63,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 4 1 * *"  # 4 AM first day of month
-    startCommand: "python -m app.workflow.scheduler monthly_analytics"
+    dockerCommand: "python -m app.workflow.scheduler monthly_analytics"
     envVars:
       - fromGroup: healthcare-platform-env
 
@@ -72,7 +72,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 */6 * * *"  # Every 6 hours
-    startCommand: "python -m app.workflow.scheduler inventory_restock_check"
+    dockerCommand: "python -m app.workflow.scheduler inventory_restock_check"
     envVars:
       - fromGroup: healthcare-platform-env
 
@@ -81,7 +81,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 10 * * *"  # 10 AM daily
-    startCommand: "python -m app.workflow.scheduler attendance_escalation"
+    dockerCommand: "python -m app.workflow.scheduler attendance_escalation"
     envVars:
       - fromGroup: healthcare-platform-env
 
@@ -90,7 +90,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     schedule: "0 6 * * *"  # 6 AM daily
-    startCommand: "python -m app.workflow.scheduler equipment_maintenance_check"
+    dockerCommand: "python -m app.workflow.scheduler equipment_maintenance_check"
     envVars:
       - fromGroup: healthcare-platform-env
 
