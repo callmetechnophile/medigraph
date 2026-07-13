@@ -35,5 +35,5 @@ USER appuser
 EXPOSE 10000
 
 # Run with uvicorn using shell to expand $PORT dynamically
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000} --workers 4"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000} --workers 1"]
 
