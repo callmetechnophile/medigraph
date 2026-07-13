@@ -3,7 +3,7 @@ services:
     name: healthcare-platform-api
     runtime: docker
     dockerfilePath: ./Dockerfile
-    plan: standard
+    plan: free
     region: oregon
     autoDeploy: true
     healthCheckPath: /api/v1/health
