@@ -97,7 +97,7 @@ class RoleChecker:
         return user
 
 
-def require_roles(*roles: str):
+def require_roles(*roles: str) -> RoleChecker:
     """Factory that creates a Depends-compatible role checker.
 
     Usage::
@@ -106,8 +106,8 @@ def require_roles(*roles: str):
         async def admin_route(user=Depends(require_roles("system_admin"))):
             ...
     """
-    checker = RoleChecker(*roles)
-    return Depends(checker)
+    return RoleChecker(*roles)
+
 
 
 # ---------------------------------------------------------------------------
