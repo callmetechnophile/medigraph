@@ -2,13 +2,15 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Copy dependency configuration and source code
-COPY pyproject.toml ./
-COPY app/ ./app/
+# Copy requirements file first to leverage Docker layer caching
+COPY requirements.txt ./
 
-# Install pip dependencies directly into the system python environment
+# Install pip dependencies
 RUN pip install --no-cache-dir --upgrade pip \
-    && pip install --no-cache-dir .
+    && pip install --no-cache-dir -r requirements.txt
+
+# Copy application source code
+COPY app/ ./app/
 
 # Create temp directories for reports
 RUN mkdir -p /app/tmp/reports
